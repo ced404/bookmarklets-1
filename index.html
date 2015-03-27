@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bookmarklets</title>
+</head>
+<body>
+
+
+
+  <article class="bookmarklet">
+
+    <h4>✐ Edit This Page !</h4>
+
+    <code class="code code--javascript">
+    	<pre>
+        javascript:var de = document.body.contentEditable, dd = document.designMode; document.body.contentEditable = ( de != 'inherit' && de != 'false' ? 'false' : 'true' ); document.designMode=(dd == 'on' ? 'off' : 'on'); void 0;
+    	</pre>
+    </code>
+
+  	<p><a href="javascript:var de = document.body.contentEditable, dd = document.designMode; document.body.contentEditable = ( de != 'inherit' && de != 'false' ? 'false' : 'true' ); document.designMode=(dd == 'on' ? 'off' : 'on'); void 0;">✐ Edit This Page !</a></p>
+
+  </article>
+
+
+
+
+  <article class="bookmarklet">
+
+    <h4>notepad</h4>
+
+    <code><pre>
+      <!-- data:text/html;utf-8,<html><head><title>some notes</title></head><body contentEditable="true"></body></html> -->
+    </pre></code>
+
+    <p><a href="data:text/html;utf-8,<html><head><title>some notes</title><link href='http://fonts.googleapis.com/css?family=Open+Sans&subset=latin-ext' rel='stylesheet' type='text/css'><style>body {font:200 100%/150% 'Open Sans', sans-serif;}</style></head><body contentEditable='true'>write here...</body></html>">notepad</a></p>
+
+
+
+  </article>
+
+
+
+</body></html>
