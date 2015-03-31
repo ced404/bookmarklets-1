@@ -3,39 +3,107 @@
 <head>
   <meta charset="UTF-8">
   <title>Bookmarklets</title>
+  
+  <style>
+	
+		body {
+			font:300 90%/1.5em 'Open sans', verdana, sans-serif;
+		}
+		
+	</style>
+  
 </head>
 <body>
   
+	<section>
 
-  <article class="bookmarklet">
+		<article class="bookmarklet">
 
-    <h4>✐ Edit This Page !</h4>
+			<h4>✐ Edit This Page !</h4>
 
-    <code class="code code--javascript">
-    	<pre>
-        javascript:var de = document.body.contentEditable, dd = document.designMode; document.body.contentEditable = ( de != 'inherit' && de != 'false' ? 'false' : 'true' ); document.designMode=(dd == 'on' ? 'off' : 'on'); void 0;
-    	</pre>
-    </code>
+			<script id="editToggle-js" type="test/bookmarklet-source">
+				var de=document.body.contentEditable,dd=document.designMode,addStyle=function(e){var t=document.createElement("style");t.innerHTML=e,t.setAttribute("id","editmode"),document.body.appendChild(t)};document.querySelector("#editmode")?document.querySelector("#editmode").remove():addStyle(".js-editable:before{ content: 'edit mode on'; position: absolute; top: 0; left: 0; z-index: 666999; background: orange; color: white; padding: 2px 6px; font: 200 10px arial,sans-serif;}"),"inherit"!=de&&"false"!=de?(document.body.removeAttribute("spellcheck"),document.body.contentEditable="false",document.designMode="off",document.body.classList.remove("js-editable")):(document.body.setAttribute("spellcheck","false"),document.body.contentEditable="true",document.designMode="on",document.body.classList.add("js-editable"));
+			</script>
 
-  	<p><a href="javascript:var de = document.body.contentEditable, dd = document.designMode; document.body.contentEditable = ( de != 'inherit' && de != 'false' ? 'false' : 'true' ); document.designMode=(dd == 'on' ? 'off' : 'on'); void 0;">✐ Edit This Page !</a></p>
+			<p><a class="bookmarklet-link js-bookmarklet" href="#editToggle-js">✐ Edit This Page !</a></p>
 
-  </article>
-
+		</article>
 
 
 
-  <article class="bookmarklet">
+		<article class="bookmarklet">
 
-    <h4>notepad</h4>
+			<h4>notepad</h4>
+			
+			<script id="dataurl-notepad" type="test/bookmarklet-source">
+				<!--data:text/html;utf-8,<html><head><title>some notes</title><link href='//fonts.googleapis.com/css?family=Open+Sans&subset=latin-ext' rel='stylesheet' type='text/css'><style>html, body{width: 100%;height: 100%;min-height: 100%;margin: 0;padding: 0;}.scrollbar::-webkit-scrollbar-track{background-color: rgba(224, 224, 224, 0.99);}.scrollbar::-webkit-scrollbar{width: 6px;}.scrollbar::-webkit-scrollbar-thumb,.scrollbar::-webkit-scrollbar-corner,.scrollbar::-webkit-resizer{background-color: rgba(186, 186, 186, 0.99);}::-moz-selection{background: rgba(152, 152, 152, 0.12);text-shadow: 1px 1px 2px white;color: #316F9B;}::selection{background: rgba(152, 152, 152, 0.12);text-shadow: 1px 1px 2px white;color: #316F9B;}.editor{color: #30546E;font: 200 100%/150% 'Open Sans', sans-serif;border: none;box-sizing: border-box;position: absolute;top: 0;left: 0;right: 0;bottom: 0;width: 100%;margin: 0;padding: 1em;white-space: pre-wrap;}</style></head><body><script>var Notepad=(function(document, undefined){var body=document.body,editor=null;var init=function (){editor=document.createElement('textarea');editor.setAttribute('spellcheck','false');editor.classList.add('editor');editor.classList.add('js-editor');editor.classList.add('scrollbar');console.log(editor);editor.onkeydown=function(e){if(e.keyCode==9 || e.which==9){e.preventDefault();var st=this.selectionStart,se=this.selectionEnd;this.value=this.value.substring(0,st)+String.fromCharCode(9)+this.value.substring(se);se=st+1;}this.value=this.value.replace(String.fromCharCode(9)+'- ', String.fromCharCode(9)+String.fromCharCode(8250)+' ');};body.appendChild(editor);};return{init: init,}})(document);document.addEventListener('DOMContentLoaded', Notepad.init );</script></body></html>-->
+			</script>
+			
+			<p><a class="bookmarklet-link dataurl-bookmarklet" href="#dataurl-notepad">data url notepad</a></p>
 
-    <code><pre>
-      <!-- data:text/html;utf-8,<html><head><title>some notes</title></head><body contentEditable="true"></body></html> -->
-    </pre></code>
+		</article>  
 
-    <p><a href="data:text/html;utf-8,<html><head><title>some notes</title><link href='http://fonts.googleapis.com/css?family=Open+Sans&subset=latin-ext' rel='stylesheet' type='text/css'><style>body {font:200 100%/150% 'Open Sans', sans-serif;}</style></head><body contentEditable='true'>write here...</body></html>">notepad</a></p>
+		
 
-  </article>
+		<article class="bookmarklet">
+
+			<h4>get links</h4>
+
+			<script id="getLinks-js" type="test/bookmarklet-source">
+				for(var a=document.querySelectorAll("a"),urls=[],l=a.length;l--;){var h=a[l].getAttribute("href");urls.push('<a href="'+h+'" target="_blank">'+h+"</a>")}console.log(urls),aside=document.createElement("aside"),aside.setAttribute("id","getLInks"),aside.innerHTML='<div style="width: 60%; height: 100%; position: absolute; top: 0px; left: 0px; overflow: auto; display: block; padding: 20px; border: 1px solid rgb(204, 204, 204); line-height: 1.5em; z-index: 666666; background: rgb(249, 249, 249);"><p>'+urls.length+" links(s) on page <a href=\"javascript:document.getElementById('getLInks').remove();\">[close]</a></p>"+urls.join("<br>")+"</div>",document.body.appendChild(aside);
+			</script>
+
+			<p><a class="bookmarklet-link js-bookmarklet" href="#getLinks-js">get links</a></p>
+
+		</article>
+
+		
+		
+		<article class="bookmarklet">
+
+			<h4>animate!css (swing)</h4>
+			
+			<script id="animateCss-js" type="test/bookmarklet-source">
+				function addStyleString(t){var e=document.createElement("style");e.innerHTML=t,document.body.appendChild(e)}addStyleString('@charset "UTF-8";/*!;Animate.css - http://daneden.me/animate;Licensed under the MIT license - http://opensource.org/licenses/MIT;;Copyright (c) 2015 Daniel Eden;*/.animated{-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;animation-fill-mode:both}@-webkit-keyframes swing{20%{-webkit-transform:rotate3d(0,0,1,15deg);transform:rotate3d(0,0,1,15deg)}40%{-webkit-transform:rotate3d(0,0,1,-10deg);transform:rotate3d(0,0,1,-10deg)}60%{-webkit-transform:rotate3d(0,0,1,5deg);transform:rotate3d(0,0,1,5deg)}80%{-webkit-transform:rotate3d(0,0,1,-5deg);transform:rotate3d(0,0,1,-5deg)}100%{-webkit-transform:rotate3d(0,0,1,0deg);transform:rotate3d(0,0,1,0deg)}}@keyframes swing{20%{-webkit-transform:rotate3d(0,0,1,15deg);transform:rotate3d(0,0,1,15deg)}40%{-webkit-transform:rotate3d(0,0,1,-10deg);transform:rotate3d(0,0,1,-10deg)}60%{-webkit-transform:rotate3d(0,0,1,5deg);transform:rotate3d(0,0,1,5deg)}80%{-webkit-transform:rotate3d(0,0,1,-5deg);transform:rotate3d(0,0,1,-5deg)}100%{-webkit-transform:rotate3d(0,0,1,0deg);transform:rotate3d(0,0,1,0deg)}}.swing{-webkit-transform-origin:top center;transform-origin:top center;-webkit-animation-name:swing;animation-name:swing}');var divs=document.querySelectorAll("body *"),l=divs.length;for(test=[];l--;){var el=divs[l],display=window.getComputedStyle(el,null).getPropertyValue("display"),isBlock="block"==display?!0:!1;isBlock&&(el.classList.add("animated"),el.classList.add("swing"),el.addEventListener("webkitAnimationEnd",function(t){t.target.classList.remove("animated"),t.target.classList.remove("swing")}))}
+			</script>
+			
+			<p><a class="bookmarklet-link js-bookmarklet" href="#animateCss-js">animate!css (swing)</a></p>
+
+		</article>
+		
+		
+			
+		<article class="bookmarklet">
+
+			<h4>blueprint grid</h4>
+			
+			<script id="blueprint-js" type="test/bookmarklet-source">
+				var addStyle=function(e){var t=document.createElement("style");t.innerHTML=e,t.setAttribute("id","editmode"),document.body.appendChild(t)};if(document.querySelector(".blueprint"))document.querySelector(".blueprint").remove();else{addStyle(".blueprint{background:#58a;background-image:linear-gradient(0,rgba(255,255,225,.5) 1px,transparent 0),linear-gradient(90deg,rgba(255,255,225,.5) 1px,transparent 0),linear-gradient(0,rgba(255,255,225,.3) 1px,transparent 0),linear-gradient(90deg,rgba(255,255,225,.3) 1px,transparent 0);background-size:20vw 20vw,20vw 20vw,5vw 5vw,5vw 5vw}.blueprint{position:fixed;top:0;left:0;bottom:0;right:0;opacity:.5;pointer-events:none;z-index:666999}");var blueprint=document.createElement("div");blueprint.classList.add("blueprint"),document.body.appendChild(blueprint)}
+			</script>
+			
+			<p><a class="bookmarklet-link js-bookmarklet" href="#blueprint-js">blueprint</a></p>
+
+		</article>
+
+	</section>
+
+	
+	<script type="text/javascript">
+  WebFontConfig = {
+    google: { families: [ 'Open+Sans::latin-ext' ] }
+  };
+  (function() {
+    var wf = document.createElement('script');
+    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+    wf.type = 'text/javascript';
+    wf.async = 'true';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(wf, s);
+  })(); </script>
 
 
-
-</body></html>
+  <script src="bookmarklets.js"></script>
+  
+</body>
+</html>
